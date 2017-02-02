@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*-coding:utf-8 -*
 import curses
-import os
+from os import *
 import sys
 import time
 from proc import *

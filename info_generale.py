@@ -8,12 +8,7 @@ def version_os():#{
     for line in fileRead:
         print(line)
     fileOpen.close()
-    fileOpen = open('/etc/issue', 'r')
-    fileRead = fileOpen.readline()
-    if fileRead == '\n':
-        break
-    print fileRead
-    fileOpen.close()
+    return (0)
 #}
 
 def uptime():#{
@@ -23,6 +18,7 @@ def uptime():#{
         uptime_string = str(timedelta(seconds = uptime_seconds))
     #}
     print(uptime_string)
+    return (0)
 #}
 
 def version_kernel():#{
@@ -30,12 +26,17 @@ def version_kernel():#{
     fileRead = fileOpen.read()
     print(fileRead)
     fileOpen.close()
+    return (0)
 #}
 
-def infos_hardware():#{
-    cpu = os.system('lscpu')
-    memory = os.system('free | grep "Mem"')
-    disk = os.sytem('df -h | grep "/dev/"')
+def infos_hardware(choos):#{
+    if choos == "cpu":
+        os.system('lscpu')
+    elif choos == "memory":
+        os.system('free | grep "Mem"')
+    elif choos == "disk":
+        os.system('df -h | grep "/dev/"')
+    return (0)
 #}
     
 def limit_open_file():#{
@@ -43,6 +44,7 @@ def limit_open_file():#{
     fileRead = fileOpen.read()
     print(fileRead)
     fileOpen.close()
+    return (0)
 #}
 
 def limit_open_proc():#{
@@ -50,7 +52,10 @@ def limit_open_proc():#{
     fileRead = fileOpen.read()
     print(fileRead)
     fileOpen.close()
+    return (0)
 #}
 
 def installed_package():#{
-    os.system("dpkg-query -f '${binary:Package}\n' -W")                                                                                                                             #}
+    os.system("dpkg-query -f '${binary:Package}\n' -W")
+    return (0)
+#}
