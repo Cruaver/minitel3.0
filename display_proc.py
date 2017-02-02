@@ -14,11 +14,11 @@ def display_process():#{
     
     while choice != ord('q') and choice != ord('Q'):#{
         screen = init_curses()
-        screen.addstr(2, 2, "Process List,  Press 'q' for exit", curses.color_pair(2) | A_BOLD)
-        screen.addstr(3,2, "Press '6' for next page and '4' for prev page", curses.color_pair(2) | A_BOLD)
-        screen.addstr(5,4, "[PID]", curses.color_pair(2) | A_BOLD)
-        screen.addstr(5,30, "[Name]", curses.color_pair(2) | A_BOLD)
-        screen.addstr(5,50, "[Page : " + str(page) + "]", curses.color_pair(2) | A_BOLD)
+        screen.addstr(2, 2, "Process List,  Press 'q' for exit", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(3,2, "Press '6' for next page and '4' for prev page", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(5,4, "[PID]", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(5,30, "[Name]", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(5,50, "[Page : " + str(page) + "]", curses.color_pair(2) | curses.A_BOLD)
         tab = page_proc(screen)
         i = 0
         while i < len(tab[page]):#{
@@ -53,19 +53,22 @@ def display_info_proc():#{
 
     while choice != ord('4'):#{
         screen = init_curses()
-        screen.addstr(2,2, "Please select your choice with numpad 1 to 4")
-        screen.addstr(3,4, "1 - Process list")
-        screen.addstr(4,4, "2 - Get process infomation")
-        screen.addstr(5,4, "3 - Kill a process")
-        screen.addstr(6,4, "4 - Exit")
+        screen.addstr(2,2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(4,4, "1 - Process list", curses.color_pair(2))
+        screen.addstr(5,4, "2 - Get process infomation", curses.color_pair(2))
+        screen.addstr(6,4, "3 - Kill a process", curses.color_pair(2))
+        screen.addstr(7,4, "4 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
         if choice != ord('4'):#{
             curses.endwin()
             system("clear")
             res = submenu_proc[chr(choice)]()
-            if res == 0:
+            if res == 0:#{
+                system("setterm -term linux -back blue -fore white")
                 raw_input("for close press enter")
+                system("setterm -term linux -back black -fore white")
+            #}
         #}
     #}
     curses.endwin()

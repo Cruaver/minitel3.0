@@ -8,6 +8,7 @@ from tool import *
 from info_generale import *
 from display_proc import *
 from conf_curses import *
+from display_reseau import *
 
 infos_hardware_choos = {
     '1' : "cpu",
@@ -20,18 +21,20 @@ def display_submenu_info1():#{
     
     while choice != ord('4'):#{
         screen = init_curses()
-        screen.addstr(2, 2, "Please select your choice with numpad 1 to 4")
-        screen.addstr(4, 4, "1 - Display CPU information")
-        screen.addstr(5, 4, "2 - Display memory")
-        screen.addstr(6, 4, "3 - Display memory left")
-        screen.addstr(7, 4, "4 - Exit")
+        screen.addstr(2, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2))
+        screen.addstr(4, 4, "1 - Display CPU information", curses.color_pair(2))
+        screen.addstr(5, 4, "2 - Display memory", curses.color_pair(2))
+        screen.addstr(6, 4, "3 - Display memory left", curses.color_pair(2))
+        screen.addstr(7, 4, "4 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
         if choice != ord('4'):#{
             curses.endwin()
             system("clear")
             infos_hardware(infos_hardware_choos[chr(choice)])
+            system("setterm -term linux -back blue -fore white")
             raw_input("for close press enter")
+            system("setterm -term linux -back black -fore white")
         #}
     #}
     curses.endwin()
@@ -55,15 +58,15 @@ def display_info_generale():#{
 
     while choice != ord('8'):#{
         screen = init_curses()
-        screen.addstr(2, 2, "Please select your choice with numpad 1 to 8")
-        screen.addstr(4, 4, "1 - Version du systeme d" + str(unichr(96)) + "exploitation")
-        screen.addstr(5, 4, "2 - Uptime")
-        screen.addstr(6, 4, "3 - Version du Kernel")
-        screen.addstr(7, 4, "4 - Informations Hardware")
-        screen.addstr(8, 4, "5 - Limite de fichiers ouverts")
-        screen.addstr(9, 4, "6 - Limite de processus ouverts")
-        screen.addstr(10, 4, "7 - paquets installes")
-        screen.addstr(11, 4, "8 - Exit")
+        screen.addstr(2, 2, "Please select your choice with numpad 1 to 8", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(4, 4, "1 - Version du systeme d" + str(unichr(96)) + "exploitation", curses.color_pair(2))
+        screen.addstr(5, 4, "2 - Uptime", curses.color_pair(2))
+        screen.addstr(6, 4, "3 - Version du Kernel", curses.color_pair(2))
+        screen.addstr(7, 4, "4 - Informations Hardware", curses.color_pair(2))
+        screen.addstr(8, 4, "5 - Limite de fichiers ouverts", curses.color_pair(2))
+        screen.addstr(9, 4, "6 - Limite de processus ouverts", curses.color_pair(2))
+        screen.addstr(10, 4, "7 - paquets installes", curses.color_pair(2))
+        screen.addstr(11, 4, "8 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
         if choice != ord('8'):#{
@@ -73,7 +76,10 @@ def display_info_generale():#{
             #}
             res = submenu_generale[chr(choice)]()
             if res == 0:
+                system("setterm -term linux -back blue -fore white")
                 raw_input("for close press enter")
+                system("setterm -term linux -back black -fore white")
+
         #}
     #}
     curses.endwin()
@@ -81,7 +87,7 @@ def display_info_generale():#{
 
 menu_minitel = {
    '1': display_info_generale,
-   #'2': display_info_reseau,
+   '2': display_info_reseau,
    '3': display_info_proc
 }
 
@@ -91,11 +97,11 @@ def init_minitel():#{
     
     while choice != ord('4'):#{
         screen = init_curses()
-        screen.addstr(2, 2, "Please select your choice with numpad 1 to 4")
-        screen.addstr(4, 4, "1 - Informations generales")
-        screen.addstr(5, 4, "2 - Reseaux")
-        screen.addstr(6, 4, "3 - Processus")
-        screen.addstr(7, 4, "4 - Exit")
+        screen.addstr(2, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(4, 4, "1 - Informations generales", curses.color_pair(2))
+        screen.addstr(5, 4, "2 - Reseaux", curses.color_pair(2))
+        screen.addstr(6, 4, "3 - Processus", curses.color_pair(2))
+        screen.addstr(7, 4, "4 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
         if choice != ord('4'):#{
