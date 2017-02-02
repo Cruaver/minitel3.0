@@ -14,16 +14,16 @@ def display_process():#{
     
     while choice != ord('q') and choice != ord('Q'):#{
         screen = init_curses()
-        screen.addstr(2,2, "Process List , Press 'q' for exit", curses.init_pair(4) | A_BOLD)
-        screen.addstr(3,2, "Press '6' for next page and '4' for prev page")
-        screen.addstr(5,4, "[PID]")
-        screen.addstr(5,30, "[Name]")
-        screen.addstr(5,50, "[Page : " + str(page) + "]")
+        screen.addstr(2, 2, "Process List,  Press 'q' for exit", curses.color_pair(2) | A_BOLD)
+        screen.addstr(3,2, "Press '6' for next page and '4' for prev page", curses.color_pair(2) | A_BOLD)
+        screen.addstr(5,4, "[PID]", curses.color_pair(2) | A_BOLD)
+        screen.addstr(5,30, "[Name]", curses.color_pair(2) | A_BOLD)
+        screen.addstr(5,50, "[Page : " + str(page) + "]", curses.color_pair(2) | A_BOLD)
         tab = page_proc(screen)
         i = 0
         while i < len(tab[page]):#{
-            screen.addstr(6 + i,4, str(tab[page][i]['pid']))
-            screen.addstr(6 + i,30, str(tab[page][i]['name']))
+            screen.addstr(6 + i,4, str(tab[page][i]['pid']), curses.color_pair(2))
+            screen.addstr(6 + i,30, str(tab[page][i]['name']), curses.color_pair(2))
             i += 1
         #}
         screen.refresh()

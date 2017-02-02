@@ -11,20 +11,20 @@ def get_pname(id):#{
     return str(p.communicate()[0])
 #}
 
-def display_process():#{
+def get_process():#{
     tab = []
     dict = {}
     dirs = os.listdir("/proc")
     for pid in dirs:#{
         if pid.isdigit():#{
             name = get_pname(pid)
-            dict["pid"] = pid
-            dict["name"] = name
+            dict["pid"] = pid.strip()
+            dict["name"] = name.strip()
             tab.append(dict)
             dict = {}
         #}
     #}
-    return tab
+    return (tab)
 #}
 
 def kill_process():#{
@@ -37,6 +37,7 @@ def kill_process():#{
         print "vous avez kill {}".format(name)
         break
     #}
+    return (0)
 #}
 
 def statuts_process():#{
@@ -48,4 +49,5 @@ def statuts_process():#{
     print get_pname(pidStat)
     print "cpu usage", (pStat.cpu_percent(interval=1))
     print "memories usage", round((pStat.memory_percent()), 1)
+    return (0)
 #}

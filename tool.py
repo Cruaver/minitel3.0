@@ -12,7 +12,6 @@ def fill_line(screen, y, x_max):#{
         screen.addstr(y, x, "_", curses.color_pair(1) | curses.A_BOLD)
         x += 1
     #}
-    return screen
 #}
     
 def fill_space(screen):#{
@@ -21,24 +20,22 @@ def fill_space(screen):#{
     while y < (max_y - 1):#{
         x = 1
         while x < (max_x - 1):#{
-            screen.addstr(y, x, " ", curses.color_pair(1))
+            screen.addstr(y, x, ' ', curses.color_pair(1))
             x += 1
-            y += 1
+        y += 1
         #}
     #}
-    return (screen)
 #}
         
 def page_proc(screen):#{
-    list_proc = proc()
+    list_proc = get_process()
     i = 0
     page_tab = []
     max_y, max_x = screen.getmaxyx()
-    while i < len(list_proc) - 2:#{
+    while i < len(list_proc):#{
         y = 0
         tab = []
-        while y < max_y - 5 and max_y > 5:#{
-            #print i, list_proc[i] , len(list_proc) - 1
+        while i < len(list_proc) and y < max_y - 7 and max_y > 7:#{
             tab.append(list_proc[i])
             i += 1
             y += 1
