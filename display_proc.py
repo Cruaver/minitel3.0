@@ -14,7 +14,7 @@ def display_process():#{
     
     while choice != ord('q') and choice != ord('Q'):#{
         screen = init_curses()
-        screen.addstr(2,2, "Process List , Press 'q' for exit")
+        screen.addstr(2,2, "Process List , Press 'q' for exit", curses.init_pair(4) | A_BOLD)
         screen.addstr(3,2, "Press '6' for next page and '4' for prev page")
         screen.addstr(5,4, "[PID]")
         screen.addstr(5,30, "[Name]")

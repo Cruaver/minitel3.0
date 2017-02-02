@@ -21,7 +21,7 @@ def fill_space(screen):#{
     while y < (max_y - 1):#{
         x = 1
         while x < (max_x - 1):#{
-            screen.addstr(y, x, " ", curses.color_pair(4))
+            screen.addstr(y, x, " ", curses.color_pair(1))
             x += 1
             y += 1
         #}
