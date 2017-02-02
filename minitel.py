@@ -102,6 +102,7 @@ def init_minitel():#{
         screen.addstr(5, 4, "2 - Reseaux", curses.color_pair(2))
         screen.addstr(6, 4, "3 - Processus", curses.color_pair(2))
         screen.addstr(7, 4, "4 - Exit", curses.color_pair(2))
+        fill_line(screen, 8)
         screen.refresh()
         choice = screen.getch()
         if choice != ord('4'):#{

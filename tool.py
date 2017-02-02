@@ -6,9 +6,10 @@ import sys
 import time
 from proc import *
 
-def fill_line(screen, y, x_max):#{
+def fill_line(screen, y):#{
     x = 1
-    while x < (x_max - 1):#{
+    max_y , max_x = screen.getmaxyx()
+    while x < (max_x - 1):#{
         screen.addstr(y, x, "_", curses.color_pair(1) | curses.A_BOLD)
         x += 1
     #}
