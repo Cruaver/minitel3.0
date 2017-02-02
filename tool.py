@@ -26,7 +26,7 @@ def fill_space(screen):#{
             y += 1
         #}
     #}
-    return screen
+    return (screen)
 #}
         
 def page_proc(screen):#{

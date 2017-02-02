@@ -19,3 +19,5 @@ def init_curses():#{
     fill_space(screen)
     return (screen)
 #}
+
+init_curses()
