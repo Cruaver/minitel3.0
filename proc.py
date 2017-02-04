@@ -109,13 +109,14 @@ def statuts_process():#{
                             print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
                     except psutil.NoSuchProcess:
                         print "Le processus a ete ferme"
-                        break
+                        return (0)
                 #}
             finally:
                 termios.tcsetattr(sys.stdin,termios.TCSADRAIN, old_settings)
             #}
         else:
             print "Aucun processus avec le PID \"{}\" en cours.".format(pidStat)
+            return (0)
     #}
     except (NameError, TypeError):
         print "Vous n'avez pas entrer un nombre entier."
