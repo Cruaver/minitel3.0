@@ -10,6 +10,14 @@ from display_proc import *
 from conf_curses import *
 from display_reseau import *
 
+def signal_handler(signal, frame):#{
+	os.system('clear')
+	os.system('stty sane')
+	print('Vous avez fait ctrl+c')
+	sys.exit(0)
+    signal.signal(signal.SIGINT, signal_handler)
+#}
+
 infos_hardware_choos = {
     '1' : "cpu",
     '2' : "memory",
