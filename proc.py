@@ -28,6 +28,8 @@ def get_process():#{
 #}
 
 def kill_process():#{
+    os.system('setterm -term linux -back blue -fore white')
+    os.system('clear')
     dirs = os.listdir("/proc")
     for pid in dirs:#{
     	try:#{
@@ -49,10 +51,13 @@ def kill_process():#{
             print "Vous n'avez pas entrer un nombre entier."
         #}
     #}
+    os.system('setterm -term linux -back black -fore white')
     return (0)
 #}
 
 def statuts_process():#{
+    os.system('setterm -term linux -back blue -fore white')
+    os.system('clear')
     try:#{
     pidStat = input("PID du processus pour voir plus de détails : ")
     if psutil.pid_exists(pidStat):#{
@@ -75,5 +80,6 @@ def statuts_process():#{
     #}
     except (NameError, TypeError):
         print "Vous n'avez pas entrer un nombre entier."
+    os.system('setterm -term linux -back black -fore white')
     return (0)
 #}
