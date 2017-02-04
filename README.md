@@ -5,4 +5,4 @@ school project
 need :
 
 -python
--psutil package : apt install pytho-psutil
+-psutil package : apt install python-psutil
