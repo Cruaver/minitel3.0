@@ -28,7 +28,7 @@ def display_submenu_info1():#{
     choice = 0
     
     while choice < 256 and choice != ord('4'):#{
-        screen = init_curses()
+        screen = init_curses("info Hardware")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2))
         screen.addstr(11, 4, "1 - Display CPU information", curses.color_pair(2))
         screen.addstr(12, 4, "2 - Display memory", curses.color_pair(2))
@@ -65,7 +65,7 @@ def display_info_generale():#{
     choice = 0
 
     while choice < 256 and choice != ord('8'):#{
-        screen = init_curses()
+        screen = init_curses("Info generale")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 8", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11, 4, "1 - Version du systeme d" + str(unichr(96)) + "exploitation", curses.color_pair(2))
         screen.addstr(12, 4, "2 - Uptime", curses.color_pair(2))
@@ -103,7 +103,7 @@ def init_minitel():#{
     choice = 0
     
     while choice < 256 and choice != ord('4'):#{
-        screen = init_curses()
+        screen = init_curses("0")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11, 4, "1 - Informations generales", curses.color_pair(2))
         screen.addstr(12, 4, "2 - Reseaux", curses.color_pair(2))

@@ -7,9 +7,9 @@ import signal
 import pwd
 import time
 import sys
-import fcntl
-from getch import getch, pause
-
+import select
+import tty
+import termios
 
 def get_pname(id):#{
     p = subprocess.Popen(["ps -o comm= {}".format(id)], stdout=subprocess.PIPE, shell=True)
@@ -72,6 +72,9 @@ def kill_process():#{
     return (0)
 #}
 
+def isData():
+    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
+
 def statuts_process():#{
     os.system('setterm -term linux -back blue -fore white')
     os.system('clear')
@@ -79,37 +82,37 @@ def statuts_process():#{
         pidStat = input("PID du processus pour voir plus de détails : ")
         os.system('clear')
         if psutil.pid_exists(pidStat):#{
-            fl = fcntl.fcntl(sys.stdin.fileno(), fcntl.F_GETFL)
-            fcntl.fcntl(sys.stdin.fileno(), fcntl.F_SETFL, fl | os.O_NONBLOCK)
-            realtime = 0
-            while 42:
-                try:#{
-                    stats = refresh(pidStat)
-                    print "PPID :", stats['parentId']
-                    print "PID :", (pidStat)
-                    print "Username :", stats['Username']
-                    try:
-                        print "Cmd name :", stats['Cmdline']
-                        print "Statut :", stats['Status']
-                        print "CPU usage :", stats['Cpu'], "%"
-                        print "Memory usage :", stats['Memories'], "%"
-                        time.sleep(1.5)
-                        try:#{
-                            realtime = sys.stdin.read()
-                            if "\n" in realtime or "\r" in realtime:
-                                break
+            old_settings = termios.tcgetattr(sys.stdin)
+            try:#{
+                tty.setcbreak(sys.stdin.fileno())
+                while 42:
+                    try:#{
+                        stats = refresh(pidStat)
+                        print "PPID :", stats['parentId']
+                        print "PID :", (pidStat)
+                        print "Username :", stats['Username']
+                        try:
+                            print "Cmd name :", stats['Cmdline']
+                            print "Statut :", stats['Status']
+                            print "CPU usage :", stats['Cpu'], "%"
+                            print "Memory usage :", stats['Memories'], "%"
+                            print "For close press 'q'"
+                            time.sleep(1)
+                            os.system('clear')
+                            if isData():#{
+                                realtime = sys.stdin.read(1)
+                                if realtime == 'q' or realtime == 'Q':
+                                    break
+                            #}
                         #}
-                        except IOError:
-                            pass
-                        time.sleep(1)
-                        print "teste"
-                        os.system('clear')
+                        except psutil.AccessDenied:
+                            print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
+                    except psutil.NoSuchProcess:
+                        print "Le processus a ete ferme"
+                        break
                 #}
-                    except psutil.AccessDenied:
-                        print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
-                except psutil.NoSuchProcess:
-                    print "Le processus a ete ferme"
-                    break
+            finally:
+                termios.tcsetattr(sys.stdin,termios.TCSADRAIN, old_settings)
             #}
         else:
             print "Aucun processus avec le PID \"{}\" en cours.".format(pidStat)
@@ -117,5 +120,5 @@ def statuts_process():#{
     except (NameError, TypeError):
         print "Vous n'avez pas entrer un nombre entier."
         os.system('setterm -term linux -back black -fore white')
-        return (0)
+    return (1)
 #}

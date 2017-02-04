@@ -4,7 +4,7 @@
 import curses
 from tool import *
 
-def init_curses():#{
+def init_curses(menu):#{
     screen = curses.initscr()
     curses.start_color()
     curses.use_default_colors()
@@ -18,6 +18,8 @@ def init_curses():#{
     screen.clear()
     screen.border(0)
     fill_space(screen)
+    title(menu, screen)
+    fill_line(screen, 8)
     footer(screen)
     return (screen)
 #}
@@ -29,9 +31,45 @@ def footer(screen):#{
 #}
 
 def title(menu, screen):
-    screen.addstr (2,1, "M     M  I  N    N  I  N    N  TTTTTTT  EEEEE  L         3333         00", curses.color_pair(4) | curses.A_BOLD)
-    screen.addstr (3,1, "M M M M  I  N N  N  I  N N  N     T     E      L        3    3      0   0", curses.color_pair(4) | curses.A_BOLD)
-    screen.addstr (4,1, "M  M  M  I  N  N N  I  N  N N     T     EEEE   L            3      0     0", curses.color_pair(4) | curses.A_BOLD)
-    screen.addstr (5,1, "M     M  I  N   NN  I  N   NN     T     E      L        3    3      0   0    ", curses.color_pair(4) | curses.A_BOLD)
-    screen.addstr (6,1, "M     M  I  N    N  I  N    N     T     EEEEE  LLLLL     3333   0    00 ", curses.color_pair(4) | curses.A_BOLD)
-    file_line(screen, 8);
+    str1 = "M     M  I  N    N  I  N    N  TTTTTTT  EEEEE  L         3333         00"
+    str2 = "M M M M  I  N N  N  I  N N  N     T     E      L        3    3      0   0"
+    str3 = "M  M  M  I  N  N N  I  N  N N     T     EEEE   L            3      0     0"
+    str4 = "M     M  I  N   NN  I  N   NN     T     E      L        3    3      0   0    "
+    str5 = "M     M  I  N    N  I  N    N     T     EEEEE  LLLLL     3333   0    00 "
+    i = 0
+    while i <len(str1):
+        if str1[i] != " ":
+            screen.addstr (2,i + 1, str(str1[i]) , curses.color_pair(4) | curses.A_BOLD)
+        else:
+            screen.addstr (2,i + 1, " " , curses.color_pair(1) | curses.A_BOLD)
+        i += 1
+    i = 0
+    while i < len(str2):
+        if str2[i] != " ":
+            screen.addstr (3, i + 1,str(str2[i]), curses.color_pair(4) | curses.A_BOLD)
+        else:
+            screen.addstr (3,i + 1, " ", curses.color_pair(1) | curses.A_BOLD)
+        i += 1
+    i = 0
+    while i < len(str3):
+        if str3[i] != " ":
+            screen.addstr (4,i + 1, str(str3[i]), curses.color_pair(4) | curses.A_BOLD)
+        else:
+            screen.addstr (4,i + 1, " ", curses.color_pair(1) | curses.A_BOLD)
+        i += 1
+    i = 0
+    while i < len(str4):
+        if str4[i] != " ":
+            screen.addstr (5,i + 1, str(str4[i]), curses.color_pair(4) | curses.A_BOLD)
+        else:
+            screen.addstr (5,i + 1, " ", curses.color_pair(1) | curses.A_BOLD)
+        i += 1
+    i = 0
+    while i < len(str5):
+        if str5[i] != " ":
+            screen.addstr (6,i + 1, str(str5[i]), curses.color_pair(4) | curses.A_BOLD)
+        else:
+            screen.addstr (6,i + 1, " ", curses.color_pair(1) | curses.A_BOLD)
+        i += 1
+    if menu != "0":
+      screen.addstr (8,4, "Menu : " + str(menu), curses.color_pair(4) | curses.A_BOLD) 

@@ -13,7 +13,7 @@ def display_process():#{
     page = 0
     
     while choice < 256 and choice != ord('q') and choice != ord('Q'):#{
-        screen = init_curses()
+        screen = init_curses("Process List")
         screen.addstr(9, 2, "Process List,  Press 'q' for exit", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(10,2, "Press '6' for next page and '4' for prev page", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11,4, "[PID]", curses.color_pair(2) | curses.A_BOLD)
@@ -52,7 +52,7 @@ def display_info_proc():#{
     choice = 0
 
     while choice < 256 and choice != ord('4'):#{
-        screen = init_curses()
+        screen = init_curses("Procesus")
         screen.addstr(9,2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11,4, "1 - Process list", curses.color_pair(2))
         screen.addstr(12,4, "2 - Get process infomation", curses.color_pair(2))
