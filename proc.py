@@ -59,24 +59,24 @@ def statuts_process():#{
     os.system('setterm -term linux -back blue -fore white')
     os.system('clear')
     try:#{
-    pidStat = input("PID du processus pour voir plus de détails : ")
-    if psutil.pid_exists(pidStat):#{
-  	pStat = psutil.Process(pidStat)
-  	parentId = psutil.Process(pidStat).ppid()
-	print "PPID :", (parentId)
-  	print "PID :", (pidStat)
-        print "Username :", pStat.username()
-  	try:#{
-  	    print pStat.cwd()
-  	    print "Cmd name :", get_pname(pidStat).rstrip('\n')
-  	    print "Statut :", pStat.status()
-  	    print "CPU usage :", (pStat.cpu_percent(interval=1)), "%"
-  	    print "Memories usage :", round((pStat.memory_percent()), 1), "%"
+        pidStat = input("PID du processus pour voir plus de détails : ")
+        if psutil.pid_exists(pidStat):#{
+            pStat = psutil.Process(pidStat)
+            parentId = psutil.Process(pidStat).ppid()
+            print "PPID :", (parentId)
+            print "PID :", (pidStat)
+            print "Username :", pStat.username()
+            try:#{
+                print pStat.cwd()
+                print "Cmd name :", get_pname(pidStat).rstrip('\n')
+                print "Statut :", pStat.status()
+                print "CPU usage :", (pStat.cpu_percent(interval=1)), "%"
+                print "Memories usage :", round((pStat.memory_percent()), 1), "%"
         #}
-  	except psutil.AccessDenied:
-  	    print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
-    else:
-        print "Aucun processus avec le PID \"{}\" en cours.".format(pidStat)
+            except psutil.AccessDenied:
+                print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
+        else:
+            print "Aucun processus avec le PID \"{}\" en cours.".format(pidStat)
     #}
     except (NameError, TypeError):
         print "Vous n'avez pas entrer un nombre entier."
