@@ -32,11 +32,11 @@ def footer(screen):#{
 #}
 
 def title(menu, screen):
-    str1 = "M     M  I  N    N  I  N    N  TTTTTTT  EEEEE  L         3333         00"
-    str2 = "M M M M  I  N N  N  I  N N  N     T     E      L        3    3      0   0"
-    str3 = "M  M  M  I  N  N N  I  N  N N     T     EEEE   L            3      0     0"
-    str4 = "M     M  I  N   NN  I  N   NN     T     E      L        3    3      0   0    "
-    str5 = "M     M  I  N    N  I  N    N     T     EEEEE  LLLLL     3333   0    00 "
+    str1 = "M     M  I  N    N  I  TTTTTTT  EEEEE  L         3333         00"
+    str2 = "M M M M  I  N N  N  I     T     E      L        3    3      0   0"
+    str3 = "M  M  M  I  N  N N  I     T     EEEE   L            3      0     0"
+    str4 = "M     M  I  N   NN  I     T     E      L        3    3      0   0    "
+    str5 = "M     M  I  N    N  I     T     EEEEE  LLLLL     3333   0    00 "
     i = 0
     while i <len(str1):
         if str1[i] != " ":
