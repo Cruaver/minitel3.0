@@ -3,6 +3,7 @@
 
 import curses
 from tool import *
+import os
 
 def init_curses(menu):#{
     screen = curses.initscr()
