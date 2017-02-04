@@ -119,6 +119,7 @@ def init_minitel():#{
         #}
     #}
     system("clear")
+    os.system('setterm -term linux -back black -fore white')
     curses.endwin()
 #}
 logo()
