@@ -99,7 +99,6 @@ menu_minitel = {
    '3': display_info_proc
 }
 
-
 def init_minitel():#{
     choice = 0
     
@@ -122,5 +121,5 @@ def init_minitel():#{
     system("clear")
     curses.endwin()
 #}
-
+logo()
 init_minitel()
