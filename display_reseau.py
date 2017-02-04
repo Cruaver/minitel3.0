@@ -20,12 +20,12 @@ def display_info_reseau():#{
     
     while choice != ord('5'):#{
         screen = init_curses()
-        screen.addstr(2,2, "Please select your choice with numpad 1 to 5", curses.color_pair(2) | curses.A_BOLD)
-        screen.addstr(4,4, "1 - Display IP", curses.color_pair(2))
-        screen.addstr(5,4, "2 - Display Interface", curses.color_pair(2))
-        screen.addstr(6,4, "3 - Display debit", curses.color_pair(2))
-        screen.addstr(7,4, "4 - Display route", curses.color_pair(2))
-        screen.addstr(8,4, "5 - Exit", curses.color_pair(2))
+        screen.addstr(9,2, "Please select your choice with numpad 1 to 5", curses.color_pair(2) | curses.A_BOLD)
+        screen.addstr(11,4, "1 - Display IP", curses.color_pair(2))
+        screen.addstr(12,4, "2 - Display Interface", curses.color_pair(2))
+        screen.addstr(13,4, "3 - Display debit", curses.color_pair(2))
+        screen.addstr(14,4, "4 - Display route", curses.color_pair(2))
+        screen.addstr(15,4, "5 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
         if choice != ord('5'):#{

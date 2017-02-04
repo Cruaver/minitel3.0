@@ -36,7 +36,7 @@ def page_proc(screen):#{
     while i < len(list_proc):#{
         y = 0
         tab = []
-        while i < len(list_proc) and y < max_y - 7 and max_y > 7:#{
+        while i < len(list_proc) and y < max_y - 17 and max_y > 16:#{
             tab.append(list_proc[i])
             i += 1
             y += 1

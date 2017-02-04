@@ -15,5 +15,12 @@ def init_curses():#{
     screen.clear()
     screen.border(0)
     fill_space(screen)
+    footer(screen)
+    return (screen)
+#}
+
+def footer(screen):#{
+    max_y , max_x = screen.getmaxyx()
+    screen.addstr(max_y - 2, 1, "(C) kabro_c, lorill_j, selatn_r, naze_g", curses.color_pair(2) | curses.A_BOLD)
     return (screen)
 #}
