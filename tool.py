@@ -45,24 +45,3 @@ def page_proc(screen):#{
     #}
     return page_tab
 #}
-
-def get_input(string):#{
-    screen.clear()
-    screen.border(0)
-    screen.addstr(2, 2, string)
-    screen.refresh()
-    inpute = screen.getstr(10, 10, 60)
-    return inpute
-#}
-
-def cmd(string):#{
-    system("clear")
-    res = system(string)
-    print ""
-    if res == 0:
-        print "Command executed correctly"
-    else:
-        print "Command terminated with error"
-    raw_input("Press enter")
-    print ""
-#}

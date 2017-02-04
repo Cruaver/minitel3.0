@@ -18,7 +18,7 @@ submenu_reseau = {
 def display_info_reseau():#{
     choice = 0
     
-    while choice != ord('5'):#{
+    while choice < 256 and choice != ord('5'):#{
         screen = init_curses()
         screen.addstr(9,2, "Please select your choice with numpad 1 to 5", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11,4, "1 - Display IP", curses.color_pair(2))
@@ -28,7 +28,7 @@ def display_info_reseau():#{
         screen.addstr(15,4, "5 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
-        if choice != ord('5'):#{
+        if choice > 48 and choice < 54 and choice != ord('5'):#{
             curses.endwin()
             system("clear")
             res = submenu_reseau[chr(choice)]()

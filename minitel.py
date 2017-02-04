@@ -27,7 +27,7 @@ infos_hardware_choos = {
 def display_submenu_info1():#{
     choice = 0
     
-    while choice != ord('4'):#{
+    while choice < 256 and choice != ord('4'):#{
         screen = init_curses()
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2))
         screen.addstr(11, 4, "1 - Display CPU information", curses.color_pair(2))
@@ -36,7 +36,7 @@ def display_submenu_info1():#{
         screen.addstr(14, 4, "4 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
-        if choice != ord('4'):#{
+        if choice < 53 and choice > 48 and choice != ord('4'):#{
             curses.endwin()
             system("clear")
             infos_hardware(infos_hardware_choos[chr(choice)])
@@ -64,7 +64,7 @@ submenu_generale = {
 def display_info_generale():#{
     choice = 0
 
-    while choice != ord('8'):#{
+    while choice < 256 and choice != ord('8'):#{
         screen = init_curses()
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 8", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11, 4, "1 - Version du systeme d" + str(unichr(96)) + "exploitation", curses.color_pair(2))
@@ -77,7 +77,7 @@ def display_info_generale():#{
         screen.addstr(18, 4, "8 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
-        if choice != ord('8'):#{
+        if choice < 57 and choice > 48 and choice != ord('8'):#{
             if choice != ord('4'):#{
                 curses.endwin()
                 system("clear")
@@ -103,7 +103,7 @@ menu_minitel = {
 def init_minitel():#{
     choice = 0
     
-    while choice != ord('4'):#{
+    while choice < 256 and choice != ord('4'):#{
         screen = init_curses()
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11, 4, "1 - Informations generales", curses.color_pair(2))
@@ -113,7 +113,7 @@ def init_minitel():#{
         fill_line(screen, 8)
         screen.refresh()
         choice = screen.getch()
-        if choice != ord('4'):#{
+        if choice < 53 and choice > 48 and choice != ord('4'):#{{
             curses.endwin()
             system("clear")
             menu_minitel[chr(choice)]()
