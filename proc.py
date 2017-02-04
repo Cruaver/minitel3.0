@@ -70,7 +70,7 @@ def kill_process():#{
             except OverflowError:
                 print "Numero de processus trop eleve"
                 return (0)
-        except (NameError, TypeError):
+        except (NameError, TypeError, SyntaxError):
             print "Vous n'avez pas entrer un nombre entier."
             return (0)
         #}
@@ -129,8 +129,9 @@ def statuts_process():#{
         except OverflowError:
             print "Numero de processus trop eleve"
             return (0)
-    except (NameError, TypeError):
+    except (NameError, TypeError, SyntaxError):
         print "Vous n'avez pas entrer un nombre entier."
+        return (0)
         os.system('setterm -term linux -back black -fore white')
     return (1)
 #}
