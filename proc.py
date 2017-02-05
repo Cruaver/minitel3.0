@@ -10,6 +10,7 @@ import sys
 import select
 import tty
 import termios
+import getpass
 
 def get_pname(id):#{
     p = subprocess.Popen(["ps -o comm= {}".format(id)], stdout=subprocess.PIPE, shell=True)
@@ -105,6 +106,7 @@ def statuts_process():#{
                                 print "CPU usage :", stats['Cpu'], "%"
                                 print "Memory usage :", stats['Memory'], "%"
                                 print "For close, press 'q'."
+                                print getpass.getuser()
                                 time.sleep(1)
                                 os.system('clear')
                                 if isData():#{
