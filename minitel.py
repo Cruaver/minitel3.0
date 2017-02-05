@@ -13,7 +13,7 @@ from display_reseau import *
 def signal_handler(signal, frame):#{
     os.system('clear')
     os.system('stty sane')
-    print('Vous avez fait ctrl+c')
+    print('Ctrl+c pressed, end of the script.')
     sys.exit(0)
 #}
 signal.signal(signal.SIGINT, signal_handler)
@@ -28,7 +28,7 @@ def display_submenu_info1():#{
     choice = 0
     
     while choice < 256 and choice != ord('4'):#{
-        screen = init_curses("info Hardware")
+        screen = init_curses("Hardware information")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2))
         screen.addstr(11, 4, "1 - Display CPU information", curses.color_pair(2))
         screen.addstr(12, 4, "2 - Display memory", curses.color_pair(2))
@@ -59,21 +59,19 @@ submenu_generale = {
     '7' : installed_package
 }
 
-
-
 def display_info_generale():#{
     choice = 0
 
     while choice < 256 and choice != ord('8'):#{
-        screen = init_curses("Info generale")
+        screen = init_curses("generale informations")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 8", curses.color_pair(2) | curses.A_BOLD)
-        screen.addstr(11, 4, "1 - Version du systeme d" + str(unichr(96)) + "exploitation", curses.color_pair(2))
+        screen.addstr(11, 4, "1 - Operating system", curses.color_pair(2))
         screen.addstr(12, 4, "2 - Uptime", curses.color_pair(2))
-        screen.addstr(13, 4, "3 - Version du Kernel", curses.color_pair(2))
-        screen.addstr(14, 4, "4 - Informations Hardware", curses.color_pair(2))
-        screen.addstr(15, 4, "5 - Limite de fichiers ouverts", curses.color_pair(2))
-        screen.addstr(16, 4, "6 - Limite de processus ouverts", curses.color_pair(2))
-        screen.addstr(17, 4, "7 - paquets installes", curses.color_pair(2))
+        screen.addstr(13, 4, "3 - Kernel version", curses.color_pair(2))
+        screen.addstr(14, 4, "4 - Hardware informations", curses.color_pair(2))
+        screen.addstr(15, 4, "5 - Limit of open files", curses.color_pair(2))
+        screen.addstr(16, 4, "6 - Limit of open Processes", curses.color_pair(2))
+        screen.addstr(17, 4, "7 - Installed package", curses.color_pair(2))
         screen.addstr(18, 4, "8 - Exit", curses.color_pair(2))
         screen.refresh()
         choice = screen.getch()
@@ -85,9 +83,8 @@ def display_info_generale():#{
             res = submenu_generale[chr(choice)]()
             if res == 0:
                 system("setterm -term linux -back blue -fore white")
-                raw_input("for close press enter")
+                raw_input("for close, press enter")
                 system("setterm -term linux -back black -fore white")
-
         #}
     #}
     curses.endwin()
@@ -105,9 +102,9 @@ def init_minitel():#{
     while choice < 256 and choice != ord('4'):#{
         screen = init_curses("0")
         screen.addstr(9, 2, "Please select your choice with numpad 1 to 4", curses.color_pair(2) | curses.A_BOLD)
-        screen.addstr(11, 4, "1 - Informations generales", curses.color_pair(2))
-        screen.addstr(12, 4, "2 - Reseaux", curses.color_pair(2))
-        screen.addstr(13, 4, "3 - Processus", curses.color_pair(2))
+        screen.addstr(11, 4, "1 - Generale informations", curses.color_pair(2))
+        screen.addstr(12, 4, "2 - Network", curses.color_pair(2))
+        screen.addstr(13, 4, "3 - Processes", curses.color_pair(2))
         screen.addstr(14, 4, "4 - Exit", curses.color_pair(2))
         fill_line(screen, 8)
         screen.refresh()

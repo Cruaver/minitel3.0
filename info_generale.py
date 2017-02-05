@@ -7,7 +7,7 @@ def version_os():#{
     os.system('clear')
     fileOpen = open('/etc/issue', 'r')
     fileRead = fileOpen.readlines()
-    print(fileRead[0].rstrip())
+    print(fileRead[0].rstrip('\n'))
     fileOpen.close()
     os.system('setterm -term linux -back black -fore white')
     return (0)

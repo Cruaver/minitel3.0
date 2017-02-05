@@ -19,7 +19,7 @@ def display_info_reseau():#{
     choice = 0
     
     while choice < 256 and choice != ord('5'):#{
-        screen = init_curses("Reseau")
+        screen = init_curses("Network interface")
         screen.addstr(9,2, "Please select your choice with numpad 1 to 5", curses.color_pair(2) | curses.A_BOLD)
         screen.addstr(11,4, "1 - Display IP", curses.color_pair(2))
         screen.addstr(12,4, "2 - Display Interface", curses.color_pair(2))

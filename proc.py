@@ -21,7 +21,7 @@ def refresh(pid):
         stats = {}
         stats['pid'] = psutil.Process(pid)
         stats['Cpu'] = stats['pid'].cpu_percent(interval = 1)
-        stats['Memories'] = round(stats['pid'].memory_percent(), 1)
+        stats['Memory'] = round(stats['pid'].memory_percent(), 1)
         stats['parentId'] = psutil.Process(pid).ppid()
         stats['Username'] = stats['pid'].username()
         stats['Cmdline'] = get_pname(pid).rstrip('\n')
@@ -50,28 +50,28 @@ def kill_process():#{
     dirs = os.listdir("/proc")
     for pid in dirs:#{
     	try:#{
-            pidDel = input("PID du processus à Kill : ")
+            pidDel = input("PID of the process to kill : ")
             try:
                 if psutil.pid_exists(pidDel):#{
                     try:#{
                         name = get_pname(pidDel)
                         p = psutil.Process(pidDel)
                         p.terminate()
-                        print "Vous avez kill le processus :", name.rstrip('\n')
+                        print "Succesful kill of :", name.rstrip('\n')
                         return (0)
                 #}
                     except psutil.AccessDenied:
-                        print "Vous n'avez pas les droits pour kill le processus", name.rstrip('\n')
+                        print "You don't have the right to read all informations of the process :", name.rstrip('\n')
                         return (0)
             #}
                 else:
-                    print "Aucun processus avec le pid \"{}\" en cours.".format(pidDel)
+                    print "No process found with the pid \"{}\".".format(pidDel)
                     return (0)
             except OverflowError:
-                print "Numero de processus trop eleve"
+                print "No process found with the pid \"{}\".".format(pidDel)
                 return (0)
         except (NameError, TypeError, SyntaxError):
-            print "Vous n'avez pas entrer un nombre entier."
+            print "The input need a valid integer, the Pid of a process."
             return (0)
         #}
     #}
@@ -86,7 +86,7 @@ def statuts_process():#{
     os.system('setterm -term linux -back blue -fore white')
     os.system('clear')
     try:#{
-        pidStat = input("PID du processus pour voir plus de détails : ")
+        pidStat = input("PID of the process you want to get more details : ")
         os.system('clear')
         try:
             if psutil.pid_exists(pidStat):#{
@@ -101,10 +101,10 @@ def statuts_process():#{
                             print "Username :", stats['Username']
                             try:
                                 print "Cmd name :", stats['Cmdline']
-                                print "Statut :", stats['Status']
+                                print "Status :", stats['Status']
                                 print "CPU usage :", stats['Cpu'], "%"
-                                print "Memory usage :", stats['Memories'], "%"
-                                print "For close press 'q'"
+                                print "Memory usage :", stats['Memory'], "%"
+                                print "For close, press 'q'."
                                 time.sleep(1)
                                 os.system('clear')
                                 if isData():#{
@@ -114,23 +114,23 @@ def statuts_process():#{
                             #}
                         #}
                             except psutil.AccessDenied:
-                                print "Vous n'avez pas les droits sur ce processus pour voir plus de détails"
+                                print "You don't have the right too see more details than that for this process."
                         except psutil.NoSuchProcess:
-                            print "Le processus a ete ferme"
+                            print "The process has been closed."
                             return (0)
                 #}
                 finally:
                     termios.tcsetattr(sys.stdin,termios.TCSADRAIN, old_settings)
             #}
             else:
-                print "Aucun processus avec le PID \"{}\" en cours.".format(pidStat)
+                print "No process found with the PID \"{}\".".format(pidStat)
                 return (0)
     #}
         except OverflowError:
-            print "Numero de processus trop eleve"
+            print "No process found with the pid \"{}\".".format(pidStat)
             return (0)
     except (NameError, TypeError, SyntaxError):
-        print "Vous n'avez pas entrer un nombre entier."
+        print "The input need a valid integer, the Pid of a process."
         return (0)
         os.system('setterm -term linux -back black -fore white')
     return (1)
