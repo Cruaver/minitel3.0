@@ -1,0 +1,11 @@
+Kill of : systemd
+Adding log => this program has been use at 2017-02-05:17:44:39 By loll, commentary : MDR
+Kill of : systemd
+Kill of : kthreadd
+Kill of : ksoftirqd/0
+Adding log => this program has been use at 2017-02-05:17:45:58 By ko, commentary : NEW
+Adding log => this program has been use at 2017-02-05:17:49:00 By , no commentary
+Kill of : systemd
+Kill of : kthreadd
+Adding log => this program has been use at 2017-02-05:17:50:58 By Minitel, commentary : LOL
+Adding log => this program has been use at 2017-02-05:17:52:36 By Minitel, no commentary

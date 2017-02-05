@@ -72,5 +72,5 @@ def title(menu, screen):
         else:
             screen.addstr (6,i + 1, " ", curses.color_pair(1) | curses.A_BOLD)
         i += 1
-    if menu != "0":
-      screen.addstr (8,4, "Menu : " + str(menu), curses.color_pair(4) | curses.A_BOLD) 
+    if menu != False:
+        screen.addstr (9,4, "Menu : " + str(menu), curses.color_pair(4) | curses.A_BOLD) 

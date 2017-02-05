@@ -58,11 +58,16 @@ def kill_process():#{
                         name = get_pname(pidDel)
                         p = psutil.Process(pidDel)
                         p.terminate()
-                        print "Succesful kill of :", name.rstrip('\n')
+                        print "Succesful kill of :", name.rstrip('\n'), ", Added to syslog.txt"
+                        syslog = open("/root/log/syslog.txt", "a")
+                        syslog.write("Kill of : ")
+                        syslog.write(name.rstrip('\n'))
+                        syslog.write("\n")
+                        syslog.close()
                         return (0)
                 #}
                     except psutil.AccessDenied:
-                        print "You don't have the right to read all informations of the process :", name.rstrip('\n')
+                        print "You don't have the right to kill the process :", name.rstrip('\n')
                         return (0)
             #}
                 else:
@@ -106,7 +111,6 @@ def statuts_process():#{
                                 print "CPU usage :", stats['Cpu'], "%"
                                 print "Memory usage :", stats['Memory'], "%"
                                 print "For close, press 'q'."
-                                print getpass.getuser()
                                 time.sleep(1)
                                 os.system('clear')
                                 if isData():#{
